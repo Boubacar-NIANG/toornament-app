@@ -1,0 +1,107 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+        <div class="logo-container">
+        <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+        <!-- <h2>Tournify</h2> -->
+        </div>
+        <nav class="sidebar-menu">
+        <ul>
+            <!-- <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> -->
+            <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+            <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+            <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+            <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+        </ul>
+        </nav>
+    </aside>
+    <main class="content">
+        <!-- <h1 class="dashboard-title">Dashboard de l'Administrateur</h1> -->
+        <div class="team-management-container">
+            <h2>Gestion des Équipes</h2>
+            <table class="teams-table">
+            <thead>
+                <tr>
+                <th>Id</th>
+                <th>Nom de l'Équipe</th>
+                <th>Catégorie</th>
+                <th>Tournoi</th>
+                <th>Membres</th>
+                <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let team of teams">
+                <td>{{ team.id }}</td>
+                <td>{{ team.nom }}</td>
+                <td>{{ team.categorie }}</td>
+                <td>{{ team.tournoiNom }}</td>
+                <!-- <td>{{ team.tournoi ? team.tournoi.nom : 'N/A' }}</td> -->
+                <!-- <td>{{ team.tournoi?.nom }}</td> -->
+                <td>
+                    <button (click)="viewMembers(team.id)" class="btn btn-info">Consulter</button>
+                </td>
+                <td>
+                    <button (click)="navigateToEditTeam(team.id)" class="btn btn-primary">Modifier</button>
+                    <button (click)="deleteTeam(team.id)" class="btn btn-danger">Supprimer</button>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        
+            <button class="btn btn-success" [routerLink]="['/create-team']">Ajouter une nouvel Equipe</button>
+        
+            <!-- Section pour afficher les membres de l'équipe -->
+            <div *ngIf="selectedTeam">
+            <h3>Membres de l'Équipe</h3>
+            <table class="members-table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let member of members">
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.nom }}</td>
+                    <td>{{ member.prenom }}</td>
+                    <td>
+                    <button (click)="editMember(member.id)" class="btn btn-primary">Modifier</button>
+                    <button (click)="deleteMember(member.id)" class="btn btn-danger">Supprimer</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        
+            <!-- Formulaire pour ajouter un nouveau membre -->
+            <h4>Ajouter un Nouveau Membre</h4>
+            <div>
+                <label>Nom</label>
+                <input type="text" [(ngModel)]="newMember.nom" required>
+            </div>
+            <div>
+                <label>Prénom</label>
+                <input type="text" [(ngModel)]="newMember.prenom" required>
+            </div>
+            <button (click)="addMember()" class="btn btn-success">Ajouter Membre</button>
+            </div>
+
+            <!-- Formulaire pour modifier un membre -->
+            <div *ngIf="editingMember">
+                <h4>Modifier Membre</h4>
+                <div>
+                    <label>Nom</label>
+                    <input type="text" [(ngModel)]="editingMember.nom" required>
+                </div>
+                <div>
+                    <label>Prénom</label>
+                    <input type="text" [(ngModel)]="editingMember.prenom" required>
+                </div>
+                <button (click)="updateMember()" class="btn btn-primary">Enregistrer les modifications</button>
+            </div>
+  
+        </div>
+    </main>
+</div>

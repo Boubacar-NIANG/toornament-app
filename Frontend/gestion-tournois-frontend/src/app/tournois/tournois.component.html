@@ -1,0 +1,157 @@
+<section id="intro" class="intro-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <img src="assets/img.png" alt="Tournoi Image" class="img-fluid">
+      </div>
+      <div class="col-md-6 text-content">
+        <h1>Programmez votre prochain tournoi avec Toornament</h1>
+        <p>
+          Planification simple et rapide<br>
+          Superbe affichage en direct et en continu<br>
+          Page d'inscription en ligne
+        </p>
+        <a href="/connexion" class="btn btn-primary">Créer gratuitement un tournoi</a>
+        <br><br>
+        <a href="/video" class="watch-video-link">Voir la vidéo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="intro" class="intro-section">
+  <div class="tournoi-container">
+    <!-- Section de gauche avec les différentes options -->
+    <div class="left-section">
+      <ul>
+        <li (click)="changeImage('img1.png')" [class.active]="activeSection === 'img1.png'">
+          <h3>Gérer les participants</h3>
+          <p>Ajoutez manuellement des tournois, des équipes ou des joueurs en accèdant à votre tableau de bord.</p>
+        </li>
+        <li (click)="changeImage('img2.png')" [class.active]="activeSection === 'img2.png'">
+          <h3>Choisir le bon plan de jeu</h3>
+          <p>Combinez les poules, les arbres de tournoi et les matchs individuels et définissez votre configuration idéale.</p>
+        </li>
+        <li (click)="changeImage('img3.png')" [class.active]="activeSection === 'img3.png'">
+          <h3>Visualiser vos équipes</h3>
+          <p>Consulter les effectifs des équipes, vous pourrez modifier ces dernières ou les mettre à jour.</p>
+        </li>
+        <li (click)="changeImage('img4.png')" [class.active]="activeSection === 'img4.png'">
+          <h3>Publier les résultats</h3>
+          <p>Traitez les résultats en un rien de temps depuis n'importe quel appareil et informez tout le monde instantanément.</p>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Section de droite avec l'image qui change -->
+    <div class="right-section">
+      <img [src]="currentImage" alt="Tournoi Image">
+    </div>
+  </div>
+  
+</section>
+
+<section id="intro" class="intro-section">
+
+  <h1 class="titre">Toornament propose ces différents sports</h1>
+
+  <div class="sports-section">
+    <div class="sport-card">
+      <img src="assets/football.webp" alt="Football">
+      <h3>Football</h3>
+      <p>Gérez votre tournoi de football. Ne ratez rien avec le classement des équipes, des meilleurs buteurs et passeurs du tournoi.</p>
+    </div>
+  
+    <div class="sport-card">
+      <img src="assets/basketball.jpeg" alt="Basketball">
+      <h3>Basketball</h3>
+      <p>Organisez vos tournois de basket. Créez des poules et des tableaux, entrez les scores des matchs et suivez en temps réel l'évolution de votre compétition.</p>
+    </div>
+  
+    <div class="sport-card">
+      <img src="assets/handball.webp" alt="Handball">
+      <h3>Handball</h3>
+      <p>Gérez votre tournoi de handball. Les équipes peuvent s'inscrire et suivre en ligne l'évolution des résultats et les matchs à jour.</p>
+    </div>
+  
+    <div class="sport-card">
+      <img src="assets/ping-pong.jpeg" alt="Ping-Pong">
+      <h3>Ping-Pong</h3>
+      <p>Organisez votre compétition de ping-pong. Suivez la compétition et le classement des meilleurs joueurs.</p>
+    </div>
+  </div>
+  
+</section>
+
+<section id="intro" class="intro-section">
+
+  <div class="case-study-section">
+    <h2>Classements en direct</h2>    
+    <div class="case-study-container">
+      <div class="case-study-text">
+        <p>Suivez l’évolution des compétitions en temps réel grâce à notre fonctionnalité de classements en direct ! Que ce soit pour le football, le basketball ou le handball, restez informé de la performance de vos équipes et joueurs préférés à chaque instant.</p>
+        <p>Nos tableaux de classements sont mis à jour automatiquement après chaque match, vous offrant une vue complète sur les résultats, les points marqués et les statistiques essentielles.</p>
+        <button class="btn-classification" (click)="redirectToClassifications()">Consulter les classements</button>
+      </div>
+      <div class="case-study-image">
+        <img src="assets/ranking.png" alt="UrbanEvent">
+      </div>
+    </div>
+  </div>
+  
+
+</section>
+
+
+
+
+<section id="intro" class="intro-section">
+
+  <h2>Tentez votre chance avec nos jeux de pronostics</h2>    
+  <div class="predict">
+    <div class="left-column">
+      <div *ngIf="matches.length > 0">
+        <h2>Pronostics pour les matchs en attente</h2>
+        <div *ngFor="let match of matches" class="prediction-match">
+          <p>{{ match.equipeA.nom }} vs {{ match.equipeB.nom }} - Date: {{ match.date }}</p>
+          <form (ngSubmit)="submitPrediction(match)">
+            <div>
+              <label>Équipe gagnante:</label>
+              <select [(ngModel)]="match.predictedTeam" name="predictedTeam">
+                <option [ngValue]="match.equipeA">{{ match.equipeA.nom }}</option>
+                <option [ngValue]="match.equipeB">{{ match.equipeB.nom }}</option>
+              </select>
+            </div>
+            <div>
+              <label>Joueur marquant:</label>
+              <input [(ngModel)]="match.predictedScorer" name="predictedScorer" placeholder="Entrez le nom du joueur">
+            </div>
+            <button type="submit">Envoyer Pronostic</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <div class="right-column">
+      <h2>Pronostics déjà effectués</h2>
+      <div *ngIf="predictions.length > 0">
+        <div *ngFor="let prediction of predictions" class="prediction-item">
+          <!-- Trouver le match correspondant au pronostic -->
+          <p *ngIf="getMatchById(prediction.matchId) as match">
+            {{ match.equipeA.nom }} vs {{ match.equipeB.nom }} - Date: {{ match.date }} <br>
+            Équipe gagnante: {{ prediction.predictedTeam }} <br>
+            Joueur marquant: {{ prediction.predictedScorer }}
+          </p>
+        </div>
+      </div>
+      <div *ngIf="predictions.length === 0">
+        <p>Aucun pronostic effectué pour le moment.</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+
+</section>

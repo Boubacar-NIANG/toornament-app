@@ -1,0 +1,43 @@
+<div class="fil-actualite container my-5">
+    <h1 class="text-center mb-5">Ne rater rien de ce qui se passe dans les championnats universitaires !</h1>
+
+    <!-- Afficher tous les posts -->
+    <div class="row">
+        <div *ngFor="let post of posts" class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <!-- Titre du post -->
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title text-center">{{ post.titre }}</h5>
+                </div>
+
+                <!-- Image ou vidéo -->
+                <div class="image-container">
+                    <img *ngIf="post.photo" [src]="'data:image/jpeg;base64,' + post.photo" alt="Post Image" class="card-img-top">
+                    <video *ngIf="post.video" [src]="post.video" controls class="card-img-top"></video>
+                </div>
+
+                <!-- Contenu du post -->
+                <div class="card-body">
+                    <p class="card-text">{{ post.texte }}</p>
+                    <button class="btn btn-light" (click)="likePost(post.id)">
+                        ♡ ({{ post.likes }})
+                    </button>
+
+                    <!-- Section des commentaires -->
+                    <ul class="list-group list-group-flush mt-3">
+                        <li *ngFor="let comment of post.comments" class="list-group-item">
+                            <strong>{{ comment.user }}</strong>: {{ comment.text }}
+                        </li>
+                    </ul>
+
+                    <!-- Formulaire pour ajouter un commentaire -->
+                    <div class="mt-3">
+                        <input type="text" class="form-control mb-2" [(ngModel)]="post.newCommentUser" placeholder="Votre nom">
+                        <textarea class="form-control mb-2" [(ngModel)]="post.newCommentText" placeholder="Votre commentaire"></textarea>
+                        <button class="btn btn-primary" (click)="commentPost(post)">Commenter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

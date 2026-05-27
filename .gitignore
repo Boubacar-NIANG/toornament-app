@@ -1,0 +1,22 @@
+# Backend
+backend/target/
+backend/.idea/
+
+# Général
+.idea/
+.vscode/
+*.log
+
+Backend/gestiontournois/src/main/resources/credentials/
+
+
+# Credentials
+Backend/gestiontournois/src/main/resources/credentials/
+
+# Build folders
+Backend/gestiontournois/bin/
+Backend/gestiontournois/target/
+
+# Frontend
+Frontend/gestion-tournois-frontend/node_modules/
+Frontend/gestion-tournois-frontend/dist/

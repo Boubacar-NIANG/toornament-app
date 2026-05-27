@@ -1,0 +1,66 @@
+.fil-actualite {
+    background-color: #6BA7E2; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card {
+    background-color: #fff; /* Couleur de fond de la carte */
+    border: none;
+    border-radius: 8px;
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.image-container {
+    width: 100%;
+    height: 200px; /* Hauteur fixe pour les images */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-top {
+    width: auto;
+    height: 100%;
+    object-fit: cover; /* Ajuste l'image pour remplir le conteneur sans déformation */
+    object-position: center; /* Centre l'image dans le conteneur */
+    transition: transform 0.3s ease; /* Animation de zoom léger au survol */
+}
+
+.card-body {
+    color: #333; /* Couleur du texte dans la carte */
+}
+
+.card-title {
+    font-weight: bold;
+    color: #1b4f72; /* Couleur du titre */
+    margin: 0;
+    font-size: 20px;
+}
+
+.card-text {
+    color: #555; /* Couleur du texte */
+    font-size: 20px;
+}
+
+.btn-light {
+    color: #007bff;
+}
+
+.list-group-item {
+    background-color: #f8f9fa;
+    color: #333;
+    border: none;
+}
+
+/* Ajoute un effet de zoom léger au survol de l'image */
+.image-container:hover .card-img-top {
+    transform: scale(1.05);
+}

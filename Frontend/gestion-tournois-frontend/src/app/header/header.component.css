@@ -1,0 +1,53 @@
+.header {
+    background-color: #6BA7E2;
+    padding: 10px 0;
+  }
+  
+  .logo img {
+    /* height: 60px; */
+    width: auto; /* Laisse la largeur automatique */
+    height: 80px; /* Ajuste la hauteur selon tes besoins */
+  }
+  
+  .nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+  }
+  
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #1b3971;
+  }
+  
+  .buttons {
+    margin-left: 20px;
+  }
+  
+  .inscription-btn {
+    background-color: #D9534F;
+    color: #fff;
+    margin-right: 10px;
+  }
+  .inscription-btn:hover {
+    background-color: #f09d7c;
+  }
+  
+  .connexion-btn {
+    background-color: #1b3971;
+    color: #fff;
+  }
+  .connexion-btn:hover {
+    background-color: #8db1f3;
+  }
+  

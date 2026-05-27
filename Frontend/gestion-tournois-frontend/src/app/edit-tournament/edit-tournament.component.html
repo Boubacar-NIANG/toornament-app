@@ -1,0 +1,43 @@
+<div class="dashboard-container">
+
+<aside class="sidebar">
+  <div class="logo-container">
+    <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+    <!-- <h2>Tournify</h2> -->
+  </div>
+  <nav class="sidebar-menu">
+    <ul>
+      <!-- <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> -->
+      <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+      <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+      <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+      <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main class="content">
+<div class="edit-tournament-container">
+  <h2>Modifier Tournoi</h2>
+  <form (ngSubmit)="updateTournament()">
+    <div class="form-group">
+      <label>Nom du Tournoi</label>
+      <input type="text" [(ngModel)]="tournament.nom" name="tournamentName" required class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Catégorie</label>
+      <select [(ngModel)]="tournament.categorie" name="tournamentCategory" required class="form-control">
+        <option value="Football">Football</option>
+        <option value="Basketball">Basketball</option>
+        <option value="Handball">Handball</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Date du Tournoi</label>
+      <input type="date" [(ngModel)]="tournament.date" name="tournamentDate" required class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Mettre à jour le Tournoi</button>
+  </form>
+</div>
+</main>
+</div>

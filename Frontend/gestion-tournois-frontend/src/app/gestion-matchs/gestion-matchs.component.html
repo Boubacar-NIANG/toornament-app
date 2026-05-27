@@ -1,0 +1,114 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo-container">
+      <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+      <!-- <h2>Tournify</h2> -->
+    </div>
+    <nav class="sidebar-menu">
+      <ul>
+        <!-- <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> -->
+        <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+        <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+        <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+        <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+<main class="content">
+<div class="container">
+    <h2>Gestion des Matchs</h2>
+  
+    <!-- Liste des matchs -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Équipe A</th>
+          <th>Équipe B</th>
+          <th>Date</th>
+          <th>Score A</th>
+          <th>Score B</th>
+          <th>Tournoi</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let match of matches">
+          <td>{{ match.equipeA.nom }}</td>
+          <td>{{ match.equipeB.nom }}</td>
+          <td>{{ match.date | date }}</td>
+          <td>{{ match.scoreA }}</td>
+          <td>{{ match.scoreB }}</td>
+          <td>{{ match.tournoi.nom }}</td>
+          <td>{{ match.statut }}</td>
+          <td>
+            <div class="action-buttons">
+              <button (click)="editMatch(match)" class="btn btn-primary">Modifier</button>
+              <button (click)="deleteMatch(match.id)" class="btn btn-danger">Supprimer</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Formulaire pour ajouter/modifier un match -->
+    <div *ngIf="matchToEdit">
+      <h3>{{ isEditMode ? 'Modifier le Match' : 'Ajouter un Nouveau Match' }}</h3>
+  
+      <form (ngSubmit)="saveMatch()">
+        <div class="form-group">
+          <label for="equipeA">Équipe A</label>
+          <select [(ngModel)]="matchToEdit.equipeA" name="equipeA" required class="form-control">
+            <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{ equipe.nom }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="equipeB">Équipe B</label>
+          <select [(ngModel)]="matchToEdit.equipeB" name="equipeB" required class="form-control">
+            <option *ngFor="let equipe of equipes" [ngValue]="equipe">{{ equipe.nom }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input [(ngModel)]="matchToEdit.date" name="date" type="date" required class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="scoreA">Score A</label>
+          <input [(ngModel)]="matchToEdit.scoreA" name="scoreA" type="number" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="scoreB">Score B</label>
+          <input [(ngModel)]="matchToEdit.scoreB" name="scoreB" type="number" class="form-control">
+        </div>
+  
+        <div class="form-group">
+          <label for="tournoi">Tournoi</label>
+          <select [(ngModel)]="matchToEdit.tournoi" name="tournoi" required class="form-control">
+            <option *ngFor="let tournoi of tournois" [ngValue]="tournoi">{{ tournoi.nom }}</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <label for="statut">Statut</label>
+          <select [(ngModel)]="matchToEdit.statut" name="statut" required class="form-control">
+            <option value="En attente">En attente</option>
+            <option value="En cours">En cours</option>
+            <option value="Terminé">Terminé</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Annuler</button>
+      </form>
+    </div>
+  
+    <!-- Bouton pour ajouter un nouveau match -->
+    <button (click)="startNewMatch()" class="btn btn-primary">Ajouter un Nouveau Match</button>
+</div>
+</main>
+</div>

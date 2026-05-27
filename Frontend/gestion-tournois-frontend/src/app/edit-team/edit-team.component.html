@@ -1,0 +1,53 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="logo-container">
+      <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+      <!-- <h2>Tournify</h2> -->
+    </div>
+    <nav class="sidebar-menu">
+      <ul>
+        <!-- <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> -->
+        <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+        <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+        <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+        <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+<main class="content">
+<div class="container edit-team-container">
+  <h2>Modifier Équipe</h2>
+  
+  <form (ngSubmit)="updateTeam()">
+    <!-- Nom de l'équipe -->
+    <div class="form-group">
+      <label for="nom">Nom de l'Équipe :</label>
+      <input type="text" id="nom" [(ngModel)]="team.nom" name="nom" class="form-control" required>
+    </div>
+
+    <!-- Catégorie de l'équipe -->
+    <div class="form-group">
+      <label for="categorie">Catégorie :</label>
+      <input type="text" id="categorie" [(ngModel)]="team.categorie" name="categorie" class="form-control" required>
+    </div>
+
+    <!-- Sélection du tournoi -->
+    <div class="form-group">
+      <label for="tournoi">Sélectionner le Tournoi :</label>
+      <select id="tournoi" [(ngModel)]="team.tournoi.id" name="tournoi" class="form-control" required>
+        <option *ngFor="let tournament of tournaments" [value]="tournament.id">
+          {{ tournament.nom }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary">Mettre à jour l'Équipe</button>
+  </form>
+
+  <!-- Bouton d'annulation -->
+  <button (click)="cancel()" class="btn btn-secondary">Annuler</button>
+</div>
+</main>
+</div>

@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo-container">
+        <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+        <!-- <h2>Tournify</h2> -->
+      </div>
+      <nav class="sidebar-menu">
+        <ul>
+          <!-- <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> -->
+          <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+          <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+          <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+          <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+        </ul>
+      </nav>
+    </aside>
+  
+    <main class="content">
+      <!-- <h1 class="dashboard-title">Dashboard de l'Administrateur</h1> -->
+      <div class="tournaments-management">
+        <h2>Gestion des Tournois</h2>
+        <table class="tournaments-table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nom Tournoi</th>
+              <th>Catégorie</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tournament of tournaments">
+              <td>{{ tournament.id }}</td>
+              <td>{{ tournament.nom }}</td>
+              <td>{{ tournament.categorie }}</td>
+              <td>{{ tournament.date }}</td>
+              <td>
+                <button (click)="editTournament(tournament.id)" class="btn btn-primary">Modifier</button>
+                <button (click)="deleteTournament(tournament.id)" class="btn btn-danger">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary" [routerLink]="['/create-tournament']">Créer un nouveau Tournoi</button>
+    </div>
+    </main>
+  </div>
+  

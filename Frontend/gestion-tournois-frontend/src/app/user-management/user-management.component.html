@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo-container">
+        <!-- <img src="assets/logo.png" alt="Tournify Logo" class="logo"> -->
+        <!-- <h2>Tournify</h2> -->
+      </div>
+      <nav class="sidebar-menu">
+        <ul>
+            <li><a routerLink="/admin/users"><i class="fa fa-user"></i> Gestion des Utilisateurs</a></li> <!-- New menu item -->
+          <li><a routerLink="/dashboard-admin"><i class="fa fa-trophy"></i> Gestion des Tournois</a></li>
+          <li><a routerLink="/admin/teams"><i class="fa fa-users"></i> Gestion des Équipes</a></li>
+          <li><a routerLink="/gestion-matchs"><i class="fa fa-life-ring"></i> Matchs & Résultats</a></li>
+          <li><a routerLink="/admin/results"><i class="fa fa-bar-chart"></i> Classements équipes/joueurs</a></li>
+        </ul>
+      </nav>
+    </aside>
+  
+<main class="content">
+<div class="user-management">
+    <h2>Gestion des Utilisateurs</h2>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.nom }}</td>
+          <td>{{ user.prenom }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button (click)="editUser(user)" class="btn btn-primary">Modifier</button>
+            <button (click)="deleteUser(user.id)" class="btn btn-danger">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="startNewUser()">Ajouter un nouvel utilisateur</button>
+  
+    <div *ngIf="userToEdit">
+      <h3>{{ isEditMode ? 'Modifier' : 'Ajouter' }} un utilisateur</h3>
+      <form (ngSubmit)="saveUser()">
+        <label>Nom:</label>
+        <input [(ngModel)]="userToEdit.nom" name="nom" required>
+        <label>Prénom:</label>
+        <input [(ngModel)]="userToEdit.prenom" name="prenom" required>
+        <label>Email:</label>
+        <input [(ngModel)]="userToEdit.email" name="email" required>
+        <label>Password:</label>
+        <input [(ngModel)]="userToEdit.password" name="password" required type="password">
+        <label>Role:</label>
+        <select [(ngModel)]="userToEdit.role" name="role" required>
+          <option value="SuperAdministrateur">SuperAdministrateur</option>
+          <option value="Administrateur">Administrateur</option>
+          <option value="CommunityManager">CommunityManager</option>
+        </select>
+        <button type="submit">{{ isEditMode ? 'Mettre à jour' : 'Ajouter' }}</button>
+        <button type="button" (click)="cancelEdit()">Annuler</button>
+      </form>
+    </div>
+  </div>
+</main>
+</div>
+  
